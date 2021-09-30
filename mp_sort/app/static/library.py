@@ -4,25 +4,29 @@ import random
 array = []
 
 def gen_random_int(number, seed):
+	result = list(range(0,number))
+	random.seed(seed)
+	random.shuffle(result)
+	return result
 	pass
 
 def generate():
 	global array
-
 	number = 10
 	seed = 200
+	array = gen_random_int(number,seed)
 
 	# call gen_random_int() with the given number and seed
 	# store it to the global variable array
 	pass
 
-	array = None
+	string = ",".join(map(str,array))
+	array_str = string + "."
+		
 	# convert the items into one single string 
 	# the number should be separated by a comma
 	# and a full stop should end the string.
 	pass
-
-	array_str = None
 
 	# This line is to placed the string into the HTML
 	# under div section with the id called "generate"	
@@ -30,6 +34,20 @@ def generate():
 
 
 def sortnumber1():
+	array_str = document.getElementById("generate").innerHTML
+	array = array_str.split(",")
+	array[len(array)-1] = array[len(array)-1].replace(".","")
+	sortedarray = list(map(int,array))
+	n = len(sortedarray)
+	for i in range(1, n):
+		j = i
+		while (sortedarray[j] < sortedarray[j-1]):
+			sortedarray[j], sortedarray[j-1] = sortedarray[j-1], sortedarray[j]
+			j -= 1
+			if j==0:
+				break
+	new_string = ",".join(map(str, sortedarray))
+	array_str = new_string + "."
 	'''	This function is used in Exercise 1.
 		The function is called when the sort button is clicked.
 
@@ -40,8 +58,6 @@ def sortnumber1():
 		- create a string of the sorted numbers and store it in array_str
 	'''
 	pass
-
-	array_str = None
 	
 	document.getElementById("sorted").innerHTML = array_str
 
@@ -66,10 +82,20 @@ def sortnumber2():
 
 	# Your code should start from here
 	# store the final string to the variable array_str
+	list = value.split(",")
+	new_array = []
+	for i in list:
+		new_array.append(int(i))
+	n = len(new_array)
+	for i in range(1, n):
+		j = i
+		while (new_array[j] < new_array[j-1]):
+			new_array[j], new_array[j-1] = new_array[j-1], new_array[j]
+			j -= 1
+			if j==0:
+				break
+	new_string = ",".join(map(str, new_array))
+	array_str = new_string + "."
 	pass
 
-	array_str = None
-
 	document.getElementById("sorted").innerHTML = array_str
-
-
